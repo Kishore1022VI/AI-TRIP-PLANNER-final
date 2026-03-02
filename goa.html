@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Tourist Places in Goa</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #020617;
+    transition: 0.4s;
+}
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+/* Hover Effect */
+.back-button:hover {
+    background-color: #333;
+    transform: translateX(-5px);
+}
+
+/* Dark Mode Compatibility */
+.dark .back-button {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background: linear-gradient(90deg,#ff7e5f,#feb47b);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 280px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: #ff7e5f;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: #020617;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(248, 250, 252, 0.08);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    color: #ff7e5f;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #ff7e5f;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Dark Mode */
+.dark {
+    background: #1c1c1c;
+    color: white;
+}
+
+.dark .card {
+    background: #2c2c2c;
+}
+
+.dark header {
+    background: linear-gradient(90deg,#000000,#434343);
+}
+
+.dark footer {
+    background: #000000;
+}
+</style>
+</head>
+
+<body>
+<a href="suggestion.html" class="back-button">← Back</a>
+<header>
+    <h1>Top 10 Tourist Places in Goa</h1>
+    <p>Experience Beaches, Culture & Nightlife</p>
+</header>
+
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="container">
+
+<!-- 1 Baga Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Baga_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Baga Beach</h2>
+<p>Baga Beach is one of the most famous and lively beaches in Goa, known for its vibrant nightlife and water sports. Located in North Goa, it attracts thousands of tourists every year. Visitors can enjoy activities like parasailing, jet skiing, and banana boat rides. The beach is lined with shacks offering delicious seafood and refreshing drinks. Tito’s Lane nearby is famous for clubs and nightlife. During the day, the golden sand and blue waters create a perfect relaxing atmosphere. Baga Beach is ideal for adventure seekers, party lovers, and families looking to enjoy Goa’s energetic vibe.</p>
+</div>
+</div>
+
+<!-- 2 Calangute Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Calangute_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Calangute Beach</h2>
+<p>Calangute Beach is known as the “Queen of Beaches” in Goa. It is one of the largest and most popular beaches in the state. The beach offers stunning sunset views and a wide shoreline. Tourists can enjoy water sports and shop for souvenirs in nearby markets. The lively atmosphere makes it a favorite spot for travelers. Calangute provides a perfect blend of relaxation and excitement.</p>
+</div>
+</div>
+
+<!-- 3 Anjuna Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Anjuna_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Anjuna Beach</h2>
+<p>Anjuna Beach is famous for its rocky shoreline and vibrant flea market. It became popular during the hippie culture of the 1960s. Today, it attracts backpackers and party lovers. The beach offers scenic beauty and trance music festivals. Anjuna is known for its bohemian vibe and relaxed atmosphere.</p>
+</div>
+</div>
+
+<!-- 4 Basilica of Bom Jesus -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Basilica_of_Bom_Jesus_Goa.jpg">
+<div class="card-content">
+<h2>Basilica of Bom Jesus</h2>
+<p>The Basilica of Bom Jesus is a UNESCO World Heritage Site located in Old Goa. It houses the mortal remains of St. Francis Xavier. Built in Baroque architecture, it reflects Portuguese influence. The church attracts pilgrims and history lovers. Its artistic interiors and historical significance make it one of Goa’s most important landmarks.</p>
+</div>
+</div>
+
+<!-- 5 Dudhsagar Falls -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Dudhsagar_Falls_Goa.jpg">
+<div class="card-content">
+<h2>Dudhsagar Falls</h2>
+<p>Dudhsagar Falls is one of India’s tallest waterfalls, located on the Goa-Karnataka border. The name means “Sea of Milk,” as the white water resembles milk flowing down the rocks. Surrounded by lush greenery, it offers breathtaking views during monsoon. Trekking and jeep safaris are popular activities here.</p>
+</div>
+</div>
+
+<!-- 6 Fort Aguada -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Fort_Aguada_Goa.jpg">
+<div class="card-content">
+<h2>Fort Aguada</h2>
+<p>Fort Aguada is a 17th-century Portuguese fort overlooking the Arabian Sea. It was built to defend against invasions. The fort provides panoramic sea views and historical insights. The lighthouse inside is a popular attraction. It is a great place for photography and exploring Goa’s colonial past.</p>
+</div>
+</div>
+
+<!-- 7 Colva Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Colva_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Colva Beach</h2>
+<p>Colva Beach in South Goa is known for its white sand and peaceful environment. It is less crowded compared to North Goa beaches. Visitors can enjoy relaxing walks and fresh seafood. The calm atmosphere makes it ideal for families and couples.</p>
+</div>
+</div>
+
+<!-- 8 Chapora Fort -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Chapora_Fort_Goa.jpg">
+<div class="card-content">
+<h2>Chapora Fort</h2>
+<p>Chapora Fort became famous after the Bollywood movie “Dil Chahta Hai.” It offers stunning views of Vagator Beach and the Arabian Sea. The fort ruins create a historic charm. It is a popular sunset viewpoint in Goa.</p>
+</div>
+</div>
+
+<!-- 9 Vagator Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Vagator_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Vagator Beach</h2>
+<p>Vagator Beach is known for its dramatic cliffs and scenic beauty. It offers a quieter experience compared to Baga and Calangute. The beach is popular among international tourists. Its red cliffs and blue waters create a picturesque setting.</p>
+</div>
+</div>
+
+<!-- 10 Palolem Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Palolem_Beach_Goa.jpg">
+<div class="card-content">
+<h2>Palolem Beach</h2>
+<p>Palolem Beach is one of the most beautiful beaches in South Goa. It is known for its crescent shape and calm waters. Visitors can enjoy kayaking, dolphin spotting, and relaxing stays in beach huts. The peaceful environment makes it perfect for relaxation and nature lovers.</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Goa Tourism | Sun, Sand & Sea
+</footer>
+
+<script>
+    // Back button smooth click animation
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    this.style.transform = "scale(0.9)";
+});
+function searchPlaces() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h2")[0];
+        if (title.innerHTML.toLowerCase().indexOf(input) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+// Scroll Animation
+window.addEventListener("scroll", function() {
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screenHeight = window.innerHeight;
+        if (position < screenHeight - 100) {
+            card.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>

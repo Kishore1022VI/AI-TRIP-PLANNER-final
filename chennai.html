@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Tourist Places in Chennai</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #020617;
+    transition: 0.4s;
+}
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+/* Hover Effect */
+.back-button:hover {
+    background-color: #333;
+    transform: translateX(-5px);
+}
+
+/* Dark Mode Compatibility */
+.dark .back-button {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background: linear-gradient(90deg,#1e3c72,#2a5298);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 280px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: #2a5298;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: #020617;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(59, 130, 246, 0.45);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    color: #1e3c72;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1e3c72;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Dark Mode */
+.dark {
+    background: #1c1c1c;
+    color: white;
+}
+
+.dark .card {
+    background: #2c2c2c;
+}
+
+.dark header {
+    background: linear-gradient(90deg,#000000,#434343);
+}
+
+.dark footer {
+    background: #000000;
+}
+</style>
+</head>
+
+<body>
+<a href="suggestion.html" class="back-button">← Back</a>
+<header>
+    <h1>Top 10 Tourist Places in Chennai</h1>
+    <p>Explore the Cultural Capital of South India</p>
+</header>
+
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="container">
+
+<!-- 1 Marina Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Marina_Beach_Chennai.jpg">
+<div class="card-content">
+<h2>Marina Beach</h2>
+<p>Marina Beach is one of the longest urban beaches in the world and the most iconic landmark of Chennai. Stretching along the Bay of Bengal, it offers golden sands and refreshing sea breeze. The beach is a favorite spot for morning walkers, joggers, and families. Visitors can enjoy local street food like sundal and murukku while watching the sunrise or sunset. Important landmarks such as the MGR Memorial and Anna Memorial are located along the beach road. Marina Beach also reflects Chennai’s vibrant culture and social life. During festivals and holidays, it becomes lively with cultural events and gatherings. The vast shoreline, scenic beauty, and energetic atmosphere make Marina Beach a must-visit destination for anyone traveling to Chennai.</p>
+</div>
+</div>
+
+<!-- 2 Kapaleeshwarar Temple -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Kapaleeshwarar_Temple_Chennai.jpg">
+<div class="card-content">
+<h2>Kapaleeshwarar Temple</h2>
+<p>Kapaleeshwarar Temple is a historic Hindu temple dedicated to Lord Shiva, located in Mylapore. Built in Dravidian architectural style, the temple is known for its colorful gopuram adorned with intricate sculptures. It is one of the oldest temples in Chennai and holds great religious significance. Devotees visit daily to seek blessings and participate in rituals. The temple comes alive during festivals like Panguni Peruvizha, attracting thousands of visitors. The surrounding streets are filled with traditional shops selling flowers, pooja items, and handicrafts. The spiritual atmosphere combined with architectural beauty makes Kapaleeshwarar Temple an important cultural landmark in Chennai.</p>
+</div>
+</div>
+
+<!-- 3 Fort St. George -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Fort_St_George_Chennai.jpg">
+<div class="card-content">
+<h2>Fort St. George</h2>
+<p>Fort St. George was built by the British in 1644 and marks the beginning of British rule in India. It is the first English fortress in the country. Today, it houses the Tamil Nadu Legislative Assembly and a museum displaying colonial artifacts, weapons, and documents. The fort also includes St. Mary’s Church, one of the oldest Anglican churches in India. The architecture reflects colonial influence and historical significance. Visitors interested in history and heritage will find Fort St. George fascinating. It provides deep insights into Chennai’s colonial past and administrative development.</p>
+</div>
+</div>
+
+<!-- 4 Mahabalipuram -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Shore_Temple_Mahabalipuram.jpg">
+<div class="card-content">
+<h2>Mahabalipuram</h2>
+<p>Mahabalipuram, a UNESCO World Heritage Site near Chennai, is famous for its rock-cut temples and ancient monuments. The Shore Temple stands beautifully along the coastline. Built by the Pallava dynasty, the monuments showcase remarkable stone carvings. Arjuna’s Penance and Five Rathas are popular attractions. The coastal scenery and historical significance make Mahabalipuram a favorite tourist spot. It is perfect for both history lovers and beach enthusiasts.</p>
+</div>
+</div>
+
+<!-- 5 Santhome Cathedral Basilica -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Santhome_Cathedral_Chennai.jpg">
+<div class="card-content">
+<h2>Santhome Cathedral Basilica</h2>
+<p>Santhome Cathedral Basilica is a beautiful church built over the tomb of St. Thomas, one of the twelve apostles of Jesus Christ. The neo-gothic architecture and white exterior create a peaceful atmosphere. The church attracts pilgrims and tourists alike. Its museum displays religious artifacts and historical items. The calm environment makes it ideal for prayer and reflection.</p>
+</div>
+</div>
+
+<!-- 6 Valluvar Kottam -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Valluvar_Kottam_Chennai.jpg">
+<div class="card-content">
+<h2>Valluvar Kottam</h2>
+<p>Valluvar Kottam is a monument dedicated to the famous Tamil poet Thiruvalluvar. The structure resembles a temple chariot and is built with intricate stone carvings. The auditorium inside is one of the largest in Asia. The monument celebrates Tamil literature and culture. Visitors can read verses from the Thirukkural inscribed on granite walls.</p>
+</div>
+</div>
+
+<!-- 7 Guindy National Park -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Guindy_National_Park.jpg">
+<div class="card-content">
+<h2>Guindy National Park</h2>
+<p>Guindy National Park is one of the few national parks located within a city. It houses deer, blackbucks, birds, and reptiles. The park offers a peaceful escape from city life. Nature lovers and families enjoy visiting this green oasis. It also includes a children’s park and snake park.</p>
+</div>
+</div>
+
+<!-- 8 Elliot’s Beach -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Elliots_Beach_Chennai.jpg">
+<div class="card-content">
+<h2>Elliot’s Beach</h2>
+<p>Elliot’s Beach, also known as Besant Nagar Beach, is quieter compared to Marina Beach. It is popular among youngsters and families. The beach is clean and offers relaxing sea views. The nearby Ashtalakshmi Temple adds spiritual charm. It is perfect for evening walks and peaceful relaxation.</p>
+</div>
+</div>
+
+<!-- 9 DakshinaChitra -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/DakshinaChitra_Chennai.jpg">
+<div class="card-content">
+<h2>DakshinaChitra</h2>
+<p>DakshinaChitra is a heritage museum showcasing South Indian art, architecture, and culture. Traditional houses from Tamil Nadu, Kerala, Karnataka, and Andhra Pradesh are recreated here. Visitors can experience folk performances and craft workshops. It is an educational and cultural destination.</p>
+</div>
+</div>
+
+<!-- 10 Birla Planetarium -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Birla_Planetarium_Chennai.jpg">
+<div class="card-content">
+<h2>Birla Planetarium</h2>
+<p>Birla Planetarium is one of the most modern planetariums in India. It offers fascinating shows about space, stars, and astronomy. The science museum nearby displays interactive exhibits. It is a great place for students and science enthusiasts. The planetarium makes learning about space fun and engaging.</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Chennai Tourism | Explore Tamil Nadu
+</footer>
+
+<script>
+    // Back button smooth click animation
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    this.style.transform = "scale(0.9)";
+});
+function searchPlaces() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h2")[0];
+        if (title.innerHTML.toLowerCase().indexOf(input) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>

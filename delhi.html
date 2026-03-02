@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Tourist Places in New Delhi</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #020617;
+    transition: 0.4s;
+}
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+/* Hover Effect */
+.back-button:hover {
+    background-color: #333;
+    transform: translateX(-5px);
+}
+
+/* Dark Mode Compatibility */
+.dark .back-button {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background: linear-gradient(90deg,#8e2de2,#4a00e0);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 280px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: #4a00e0;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: #020617;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(129, 140, 248, 0.45);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    color: #4a00e0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #4a00e0;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Dark Mode */
+.dark {
+    background: #1c1c1c;
+    color: white;
+}
+
+.dark .card {
+    background: #2c2c2c;
+}
+
+.dark header {
+    background: linear-gradient(90deg,#000000,#434343);
+}
+
+.dark footer {
+    background: #000000;
+}
+</style>
+</head>
+
+<body>
+<a href="suggestion.html" class="back-button">← Back</a>
+<header>
+    <h1>Top 10 Tourist Places in New Delhi</h1>
+    <p>The Heart of India</p>
+</header>
+
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="container">
+
+<!-- 1 India Gate -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/India_Gate_in_New_Delhi.jpg">
+<div class="card-content">
+<h2>India Gate</h2>
+<p>India Gate is one of the most iconic landmarks in New Delhi. Built as a war memorial in honor of Indian soldiers who sacrificed their lives during World War I, it stands proudly at the center of the city. Designed by Sir Edwin Lutyens, this grand arch structure resembles the Arc de Triomphe in Paris. The Amar Jawan Jyoti flame beneath the monument symbolizes eternal respect for fallen soldiers. Surrounded by lush green lawns, India Gate is a popular picnic and evening destination for families and tourists. At night, the monument is beautifully illuminated, creating a spectacular view. Street vendors selling snacks and ice cream add to the lively atmosphere. The location also serves as a major venue for national events, including Republic Day celebrations. India Gate represents patriotism, history, and architectural elegance, making it a must-visit place in Delhi.</p>
+</div>
+</div>
+
+<!-- 2 Red Fort -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Fort_Delhi.jpg">
+<div class="card-content">
+<h2>Red Fort</h2>
+<p>The Red Fort, also known as Lal Qila, is a UNESCO World Heritage Site built by Mughal Emperor Shah Jahan in 1648. Constructed with red sandstone, it served as the main residence of Mughal emperors for nearly 200 years. The fort features impressive architecture, including Diwan-i-Aam and Diwan-i-Khas. Every year on Independence Day, the Prime Minister hoists the national flag here. The fort stands as a symbol of India’s rich Mughal heritage.</p>
+</div>
+</div>
+
+<!-- 3 Qutub Minar -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Qutub_Minar_New_Delhi.jpg">
+<div class="card-content">
+<h2>Qutub Minar</h2>
+<p>Qutub Minar is the tallest brick minaret in the world and another UNESCO World Heritage Site in Delhi. Built in the 12th century by Qutb-ud-din Aibak, it stands at 73 meters tall. The tower is adorned with intricate carvings and verses from the Quran. The surrounding Qutub complex includes ancient ruins and the famous Iron Pillar. It reflects early Indo-Islamic architecture.</p>
+</div>
+</div>
+
+<!-- 4 Lotus Temple -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Lotus_Temple_New_Delhi.jpg">
+<div class="card-content">
+<h2>Lotus Temple</h2>
+<p>The Lotus Temple is a Baháʼí House of Worship known for its unique lotus-shaped design. Made of white marble, it symbolizes unity and peace. People of all religions are welcome to pray or meditate here. Its serene atmosphere and modern architecture attract visitors worldwide.</p>
+</div>
+</div>
+
+<!-- 5 Humayun’s Tomb -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Humayuns_Tomb_Delhi.jpg">
+<div class="card-content">
+<h2>Humayun’s Tomb</h2>
+<p>Humayun’s Tomb is a UNESCO World Heritage Site built in 1570. It is considered a precursor to the Taj Mahal due to its Mughal architecture and garden layout. The tomb is surrounded by lush gardens and water channels. It represents Persian and Indian architectural influences.</p>
+</div>
+</div>
+
+<!-- 6 Akshardham Temple -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Akshardham_Temple_Delhi.jpg">
+<div class="card-content">
+<h2>Akshardham Temple</h2>
+<p>Akshardham Temple is a magnificent Hindu temple complex known for its intricate carvings and grand architecture. It showcases Indian culture, spirituality, and history. The temple features exhibitions, a musical fountain, and beautiful gardens.</p>
+</div>
+</div>
+
+<!-- 7 Jama Masjid -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Jama_Masjid_Delhi.jpg">
+<div class="card-content">
+<h2>Jama Masjid</h2>
+<p>Jama Masjid is one of the largest mosques in India, built by Shah Jahan in 1656. It can accommodate thousands of worshippers at once. The mosque’s architecture includes red sandstone and white marble domes.</p>
+</div>
+</div>
+
+<!-- 8 Rashtrapati Bhavan -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Rashtrapati_Bhavan_Delhi.jpg">
+<div class="card-content">
+<h2>Rashtrapati Bhavan</h2>
+<p>Rashtrapati Bhavan is the official residence of the President of India. The grand building reflects colonial architecture. The Mughal Gardens are open to the public during specific seasons.</p>
+</div>
+</div>
+
+<!-- 9 Raj Ghat -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Raj_Ghat_Delhi.jpg">
+<div class="card-content">
+<h2>Raj Ghat</h2>
+<p>Raj Ghat is the memorial dedicated to Mahatma Gandhi. It is a simple black marble platform marking the site of his cremation. The peaceful environment attracts visitors from across the world.</p>
+</div>
+</div>
+
+<!-- 10 Chandni Chowk -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Chandni_Chowk_Delhi.jpg">
+<div class="card-content">
+<h2>Chandni Chowk</h2>
+<p>Chandni Chowk is one of the oldest and busiest markets in Delhi. Established in the 17th century, it is famous for street food, textiles, jewelry, and traditional goods. The vibrant streets reflect the city’s cultural diversity.</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Delhi Tourism | Discover India’s Capital
+</footer>
+
+<script>
+    // Back button smooth click animation
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    this.style.transform = "scale(0.9)";
+});
+function searchPlaces() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h2")[0];
+        if (title.innerHTML.toLowerCase().indexOf(input) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+window.addEventListener("scroll", function() {
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screenHeight = window.innerHeight;
+        if (position < screenHeight - 100) {
+            card.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>

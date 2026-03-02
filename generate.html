@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generated Trip - AI Travel Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- HERO IMAGE -->
+<div class="hero">
+    <div class="hero-content">
+        <h1 id="tripTitle"></h1>
+        <p id="tripDate"></p>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <div class="actions-row">
+        <button class="secondary-btn" onclick="window.location.href='/trip'">
+            Adjust itinerary
+        </button>
+        <button class="primary-btn" onclick="window.print()">
+            Download plan as PDF
+        </button>
+    </div>
+
+    <h2>Description</h2>
+    <p id="descriptionText"></p>
+
+    <h2>AI Recommendations</h2>
+    <div id="aiSummary" class="ai-summary"></div>
+
+    <h2>Itinerary</h2>
+    <div id="itinerary"></div>
+
+    <h2>Estimated Cost</h2>
+    <div class="cost-box">
+        <div class="cost-header">
+            <p id="budgetDisplay"></p>
+            <p class="cost-sub">Automatically split across stays, travel, and experiences.</p>
+        </div>
+        <div id="budgetBars" class="budget-bars"></div>
+    </div>
+
+</div>
+
+</body>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b1120;
+    color: #e5e7eb;
+}
+
+.hero {
+    height: 340px;
+    background: url("back image.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(15, 23, 42, 0.25), transparent 55%),
+        linear-gradient(to top, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.3));
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 34px;
+    left: 40px;
+    color: #f9fafb;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 30px;
+    margin: 0 0 6px;
+    letter-spacing: -0.03em;
+}
+
+.hero p {
+    margin: 0;
+    font-size: 15px;
+    color: #e5e7eb;
+}
+
+.container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 32px 32px 40px;
+    background: radial-gradient(circle at top left, #020617, #020617 30%, #020617);
+}
+
+.container h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #f9fafb;
+}
+
+.container p {
+    color: #cbd5f5;
+}
+
+.ai-summary {
+    margin: 6px 0 22px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: radial-gradient(circle at top left, #020617, #020617 50%, #020617);
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.75),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+    font-size: 14px;
+    color: #e5e7eb;
+}
+
+.actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.15s ease,
+        background 0.2s ease, color 0.2s ease;
+}
+
+.primary-btn {
+    background: radial-gradient(circle at top left, #4f46e5, #0ea5e9);
+    color: #f9fafb;
+    box-shadow: 0 16px 40px rgba(59, 130, 246, 0.55);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.9);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.97;
+}
+
+.primary-btn:active,
+.secondary-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.day-box {
+    background: radial-gradient(circle at top left, #020617, #020617 40%, #020617);
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.75),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.day-content {
+    flex: 1;
+}
+
+.day-content h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #e5e7eb;
+}
+
+.day-image {
+    width: 220px;
+    height: 150px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.cost-box {
+    margin-top: 18px;
+    background: radial-gradient(circle at top left, #020617, #020617 40%, #020617);
+    padding: 18px 20px;
+    border-radius: 16px;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.75),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+    color: #e5e7eb;
+}
+
+.cost-header {
+    margin-bottom: 10px;
+}
+
+.cost-sub {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.budget-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.budget-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.budget-bar-label {
+    width: 90px;
+    color: #e5e7eb;
+}
+
+.budget-bar-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9);
+    overflow: hidden;
+}
+
+.budget-bar-fill {
+    height: 100%;
+    border-radius: inherit;
+}
+
+.budget-bar-amount {
+    width: 80px;
+    text-align: right;
+    color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        left: 20px;
+        right: 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        padding: 24px 18px 32px;
+    }
+
+    .day-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .day-image {
+        width: 100%;
+    }
+
+    .actions-row {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+<script>
+    async function checkAuth() {
+    const response = await fetch("/check-auth");
+    const data = await response.json();
+
+    if (!data.loggedIn) {
+        const next = encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = `/login.html?next=${next}`;
+    }
+}
+
+checkAuth();
+
+// GET DATA FROM URL
+const params = new URLSearchParams(window.location.search);
+
+const destination = params.get("destination");
+const date = params.get("date");
+const days = Number(params.get("days"));
+const budget = params.get("budget");
+const interests = params.get("interests");
+
+// SET TITLE
+document.getElementById("tripTitle").innerText =
+    `${days} Days Trip in ${destination}`;
+
+document.getElementById("tripDate").innerText =
+    `Starting from ${date}`;
+
+// SET DESCRIPTION
+document.getElementById("descriptionText").innerText =
+    `Enjoy a wonderful ${days}-day trip to ${destination}.
+     Experience ${interests} and explore the best attractions this place offers.`;
+
+// "AI" STYLE RECOMMENDATION PROFILE BASED ON DESTINATION + INTERESTS
+function buildAiProfile(dest, tripDays, interestsText) {
+    const destinationName = dest || "your destination";
+    const lower = destinationName.toLowerCase();
+    let type = "city";
+
+    if (/(goa|beach|maldives|bali|island|coast)/.test(lower)) {
+        type = "beach";
+    } else if (/(munnar|coorg|wayanad|hills|mountain|himala)/.test(lower)) {
+        type = "mountains";
+    } else if (/(kerala|kochi|backwater)/.test(lower)) {
+        type = "backwaters";
+    }
+
+    let base;
+    if (type === "beach") {
+        base = "leaning into relaxed coastal days with sunrise walks, calm afternoons, and sunset viewpoints.";
+    } else if (type === "mountains") {
+        base = "balancing viewpoints, light hikes, and slow evenings surrounded by nature.";
+    } else if (type === "backwaters") {
+        base = "mixing slow backwater cruises with village walks, food, and sunset views.";
+    } else {
+        base = "alternating between city landmarks, neighbourhood walks, and time to slow down in cafés and parks.";
+    }
+
+    let focusSentence = "";
+    if (interestsText) {
+        const iLower = interestsText.toLowerCase();
+        const focus = [];
+        if (iLower.includes("food")) focus.push("food spots");
+        if (iLower.includes("adventure")) focus.push("adventure experiences");
+        if (iLower.includes("culture")) focus.push("local culture");
+        if (iLower.includes("shopping")) focus.push("shopping streets");
+        if (focus.length) {
+            focusSentence = ` We add extra weight on ${focus.join(", ")} based on your interests.`;
+        }
+    }
+
+    return {
+        type,
+        summary: `For your ${tripDays}-day trip to ${destinationName}, this plan ${base}${focusSentence}`
+    };
+}
+
+// BUILD PER-DAY PLAN USING SIMPLE RULES THAT FEEL "AI GENERATED"
+function buildAiDays(profile, dest, tripDays) {
+    const destinationName = dest || "the city";
+    const daysPlan = [];
+
+    const cityDays = [
+        {
+            title: "Historic core & iconic views",
+            morning: `Guided or self-guided walk through the historic center of ${destinationName}.`,
+            afternoon: `Visit one headline landmark or museum, then explore a nearby neighbourhood on foot.`,
+            evening: `Sunset viewpoint followed by local dinner in a classic restaurant.`
+        },
+        {
+            title: "Local food & markets",
+            morning: `Start at a popular local café, then browse a central market for snacks and souvenirs.`,
+            afternoon: `Street‑food style lunch, then a relaxed walk through a park or riverside promenade in ${destinationName}.`,
+            evening: `Food‑focused neighbourhood crawl with dessert at a local favourite.`
+        },
+        {
+            title: "Neighbourhoods & culture",
+            morning: `Explore a creative or bohemian district with galleries and indie shops.`,
+            afternoon: `Visit a cultural site or temple/church and learn a bit of the city's story.`,
+            evening: `Catch a cultural performance or live music if available, then slow dinner nearby.`
+        },
+        {
+            title: "Day‑trip or themed day",
+            morning: `Optional short day‑trip from ${destinationName} to a nearby viewpoint, beach, or village.`,
+            afternoon: `Continue exploring the area with a light hike or scenic drive.`,
+            evening: `Return to ${destinationName} for a calm dinner and night walk.`
+        }
+    ];
+
+    const beachDays = [
+        {
+            title: "Easy arrival & sunset",
+            morning: `Slow breakfast, then check into your stay near the beach in ${destinationName}.`,
+            afternoon: `First swim or beach walk, followed by a relaxed drink at a seafront café.`,
+            evening: `Watch sunset from the sand or a cliff‑top point, then seafood dinner.`
+        },
+        {
+            title: "Water activities & café time",
+            morning: `Try a light water activity: boat ride, kayaking, or snorkeling if available.`,
+            afternoon: `Lunch at a local shack, then hammock/reading time under shade.`,
+            evening: `Beachfront stroll, explore the night market or small beach town lanes.`
+        },
+        {
+            title: "Explore inland & viewpoints",
+            morning: `Short trip inland to a fort, lighthouse, or viewpoint near ${destinationName}.`,
+            afternoon: `Lunch with a view, then optional cycling or scooter ride through nearby villages.`,
+            evening: `Return to the beach for a final swim and relaxed dinner.`
+        }
+    ];
+
+    const mountainDays = [
+        {
+            title: "Valley views & orientation",
+            morning: `Arrive and settle into your stay with a view near ${destinationName}.`,
+            afternoon: `Short walk to a nearby viewpoint or tea/coffee estate.`,
+            evening: `Hot drinks, local snacks, and an early night under clear skies.`
+        },
+        {
+            title: "Scenic hike & waterfalls",
+            morning: `Light to moderate hike to a famous viewpoint or peak around ${destinationName}.`,
+            afternoon: `Visit a waterfall or lake, with a simple packed or local lunch on the way.`,
+            evening: `Campfire (if available) or cozy indoor time with board games or reading.`
+        },
+        {
+            title: "Village & culture day",
+            morning: `Visit a nearby village, handicraft center, or temple for a slice of local life.`,
+            afternoon: `Tasting session of regional dishes or plantation visit (coffee/tea/spices).`,
+            evening: `Slow walk at golden hour, then relaxed dinner at your stay.`
+        }
+    ];
+
+    let baseDays = cityDays;
+    if (profile.type === "beach") baseDays = beachDays;
+    if (profile.type === "mountains" || profile.type === "backwaters") baseDays = mountainDays;
+
+    for (let i = 0; i < tripDays; i++) {
+        const template = baseDays[i % baseDays.length];
+        daysPlan.push({
+            title: template.title,
+            morning: template.morning,
+            afternoon: template.afternoon,
+            evening: template.evening
+        });
+    }
+
+    return daysPlan;
+}
+
+// GENERATE AI‑STYLE ITINERARY
+let itineraryHTML = "";
+
+if (!Number.isNaN(days) && days > 0) {
+    const profile = buildAiProfile(destination, days, interests);
+    const aiSummaryEl = document.getElementById("aiSummary");
+    if (aiSummaryEl && profile) {
+        aiSummaryEl.textContent = profile.summary;
+    }
+
+    const aiDays = buildAiDays(profile, destination, days);
+
+    // Use local / relative images that already exist in the project
+    const destLower = (destination || "").toLowerCase();
+    let imageSet = ["mysore.jpg", "kerala.jpg", "goa.jpg", "download.jpg", "images.jpg"];
+
+    if (/(goa)/.test(destLower)) {
+        imageSet = ["goa.jpg", "download.jpg"];
+    } else if (/(kerala|kochi)/.test(destLower)) {
+        imageSet = ["kerala.jpg", "mysore.jpg"];
+    } else if (/(delhi)/.test(destLower)) {
+        imageSet = ["download.jpg", "mysore.jpg"];
+    } else if (/(chennai|tamil nadu)/.test(destLower)) {
+        imageSet = ["images.jpg", "mysore.jpg"];
+    }
+
+    aiDays.forEach((day, idx) => {
+        const dayNumber = idx + 1;
+        const imageUrl = imageSet[idx % imageSet.length];
+        itineraryHTML += `
+        <div class="day-box">
+            <div class="day-content">
+                <h3>Day ${dayNumber} – ${day.title}</h3>
+                <p>🌅 Morning: ${day.morning}</p>
+                <p>🌞 Afternoon: ${day.afternoon}</p>
+                <p>🌙 Evening: ${day.evening}</p>
+            </div>
+            <img class="day-image"
+                 src="${imageUrl}"
+                 alt="Day ${dayNumber} in ${destination}">
+        </div>
+        `;
+    });
+}
+
+document.getElementById("itinerary").innerHTML = itineraryHTML;
+
+// SHOW BUDGET
+document.getElementById("budgetDisplay").innerText =
+    `Total Budget: ₹${budget}`;
+
+// SIMPLE VISUAL BUDGET SPLIT
+const budgetBars = document.getElementById("budgetBars");
+if (budgetBars && budget && !Number.isNaN(Number(budget))) {
+    const total = Math.max(Number(budget), 0);
+
+    const allocations = [
+        { label: "Stays", color: "linear-gradient(90deg,#22c55e,#4ade80)", fraction: 0.5 },
+        { label: "Travel", color: "linear-gradient(90deg,#38bdf8,#0ea5e9)", fraction: 0.3 },
+        { label: "Experiences", color: "linear-gradient(90deg,#a855f7,#6366f1)", fraction: 0.2 }
+    ];
+
+    allocations.forEach(a => {
+        const amount = Math.round(total * a.fraction);
+        const row = document.createElement("div");
+        row.className = "budget-bar-row";
+        row.innerHTML = `
+            <span class="budget-bar-label">${a.label}</span>
+            <div class="budget-bar-track">
+                <div class="budget-bar-fill" style="width:${a.fraction * 100}%;background:${a.color};"></div>
+            </div>
+            <span class="budget-bar-amount">₹${amount}</span>
+        `;
+        budgetBars.appendChild(row);
+    });
+}
+
+</script>
+
+</html>

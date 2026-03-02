@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Planner - AI Travel Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <!-- LOGO (GOES TO HOME) -->
+    <button class="logo-btn" onclick="goToHome()">
+        🌏 AI Travel Planner
+    </button>
+
+    <!-- NAVIGATION -->
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="goToHome()">SUGGESTION</button>
+        <button class="nav-btn active">TRIP PLANNER</button>
+    </div>
+
+    <!-- LOGIN -->
+    <button id="loginBtn" onclick="goToLogin()">Login</button>
+
+</div>
+
+<hr class="header-line">
+
+<!-- MAIN LAYOUT -->
+<div class="planner-shell">
+
+    <!-- LEFT: COPY / VALUE PROP -->
+    <div class="planner-copy">
+        <h1>Craft unforgettable itineraries with AI</h1>
+        <p>
+            Your personal trip planner and travel curator, creating custom itineraries
+            tailored to your interests, dates, and budget.
+        </p>
+        <div class="planner-pills">
+            <span>Smart destination search</span>
+            <span>Visual budget planning</span>
+            <span>Day‑by‑day itinerary</span>
+        </div>
+        <div class="planner-highlight">
+            <h3>Everything you need in one place</h3>
+            <ul>
+                <li>Adjust your itinerary anytime, then regenerate in one click.</li>
+                <li>Capture what matters: interests, trip length, and realistic budget.</li>
+                <li>Export your plan visually and keep it handy on the go.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-container">
+
+        <div class="form-group">
+            <label>What is destination of choice?</label>
+            <div class="search-container">
+                <input type="text" id="destinationInput" placeholder="Search destination..." autocomplete="off">
+                <div id="suggestions" class="suggestions-box"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>When are you planning to travel?</label>
+            <input type="date" id="travelDate" required>
+        </div>
+
+        <div class="form-group">
+            <label>How many days?</label>
+            <input type="number" id="days" min="1" placeholder="Enter number of days" required>
+        </div>
+
+        <div class="form-group">
+            <label>What is your budget?</label>
+            <input type="number" id="budget" min="0" placeholder="Enter your budget" required>
+        </div>
+
+        <div class="form-group">
+            <label>Your interests</label>
+            <input type="text" id="interests" placeholder="Adventure, Food, Culture..." required>
+        </div>
+
+        <button class="generate-btn" onclick="generateTrip()">Generate Trip</button>
+
+        <p id="error-msg" style="color:red; margin-top:15px;"></p>
+
+    </div>
+
+</div>
+
+<!-- FEATURE GRID (INSPIRED BY WONDERPLAN) -->
+<section class="feature-section">
+    <h2>Everything you need for planning your trip</h2>
+    <div class="feature-grid">
+        <article class="feature-card">
+            <h3>Adjust your itinerary as needed</h3>
+            <p>Reorder days, tweak destinations, and regenerate your plan whenever your schedule changes.</p>
+        </article>
+        <article class="feature-card">
+            <h3>AI‑powered travel insights</h3>
+            <p>Combine your interests and budget to get a balanced mix of sights, food, culture, and downtime.</p>
+        </article>
+        <article class="feature-card">
+            <h3>Offline‑friendly planning</h3>
+            <p>Generate a clean itinerary view that’s easy to print or save as a PDF before you go offline.</p>
+        </article>
+        <article class="feature-card">
+            <h3>Everything in one space</h3>
+            <p>Keep your dates, days, budget, and highlights together, then jump back in whenever you’re ready.</p>
+        </article>
+    </div>
+</section>
+
+<!-- SIMPLE FAQ SECTION -->
+<section class="faq-section">
+    <h2>FAQs</h2>
+    <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-header">
+                <span>Is this planner free to use?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                Yes – this interface is designed as a free planner experience so you can explore trips without any barrier.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-header">
+                <span>Can I change my trip details later?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                Absolutely. Just come back to this page, update your destination, dates, or budget, and generate a fresh plan.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-header">
+                <span>How is my budget visualized?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                On the generated itinerary, your total budget is split into stays, travel, and experiences so you can see where
+                your money goes at a glance.
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="result"></div>
+
+</body>
+
+<style>
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, #dbeafe 0, #f9fafb 40%, #eef2ff 90%);
+    color: #0f172a;
+}
+
+/* HEADER */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    margin: 0 -24px 16px;
+    background: rgba(248, 250, 252, 0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.nav-buttons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+    background: rgba(239, 246, 255, 0.95);
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.logo-btn {
+    font-size: 24px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0f172a;
+}
+
+.logo-btn:hover {
+    opacity: 0.9;
+}
+
+.nav-btn {
+    font-size: 11px;
+    padding: 8px 18px;
+    background: transparent;
+    color: #0f172a;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(120deg, #4f46e5, #06b6d4);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+}
+
+.nav-btn:hover::before {
+    opacity: 0.12;
+}
+
+.nav-btn:hover {
+    transform: translateY(-1px);
+}
+
+.nav-btn.active {
+    color: #f9fafb;
+}
+
+.nav-btn.active::before {
+    opacity: 1;
+}
+
+#loginBtn {
+    padding: 8px 18px;
+    background: transparent;
+    border-radius: 999px;
+    border: 1px solid #6366f1;
+    color: #4f46e5;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease,
+        transform 0.15s ease, border-color 0.25s ease;
+}
+
+#loginBtn:hover {
+    background: linear-gradient(120deg, #4f46e5, #6366f1);
+    color: #f9fafb;
+    border-color: transparent;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+    transform: translateY(-1px);
+}
+
+.header-line {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+/* MAIN LAYOUT */
+.planner-shell {
+    max-width: 1120px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.planner-copy h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+    letter-spacing: -0.04em;
+}
+
+.planner-copy p {
+    margin: 0 0 18px;
+    color: #475569;
+    max-width: 520px;
+}
+
+.planner-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.planner-pills span {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(239, 246, 255, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.planner-highlight {
+    margin-top: 8px;
+    padding: 14px 16px 14px;
+    border-radius: 18px;
+    background: rgba(248, 250, 252, 0.98);
+    box-shadow:
+        0 16px 40px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(148, 163, 184, 0.45);
+}
+
+.planner-highlight h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+}
+
+.planner-highlight ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* FORM */
+.form-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+    border-radius: 22px;
+    background: rgba(248, 250, 252, 0.95);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.10),
+        0 0 0 1px rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(20px);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.search-container {
+    position: relative;
+}
+
+#destinationInput,
+.form-group input {
+    width: 100%;
+    padding: 14px 14px;
+    border-radius: 12px;
+    border: 1px solid #d4d4dd;
+    background: #f8fafc;
+    font-size: 15px;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+        transform 0.1s ease;
+}
+
+#destinationInput::placeholder,
+.form-group input::placeholder {
+    color: #94a3b8;
+}
+
+#destinationInput:focus,
+.form-group input:focus {
+    border-color: #4f46e5;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.35), 0 14px 35px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+}
+
+.suggestions-box {
+    position: absolute;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+    display: none;
+    z-index: 1000;
+    margin-top: 6px;
+}
+
+.suggestion-item {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #0f172a;
+    transition: background 0.18s ease, transform 0.1s ease;
+}
+
+.suggestion-item span {
+    font-size: 16px;
+}
+
+.suggestion-item:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 13px 18px;
+    background: radial-gradient(circle at top left, #4f46e5, #0ea5e9);
+    color: #f9fafb;
+    border: none;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(59, 130, 246, 0.45);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.15s ease;
+}
+
+.generate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 55px rgba(37, 99, 235, 0.55);
+    opacity: 0.97;
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+}
+
+#error-msg {
+    font-size: 13px;
+}
+
+/* FEATURE GRID */
+.feature-section {
+    max-width: 1120px;
+    margin: 60px auto 0;
+}
+
+.feature-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.feature-card {
+    padding: 18px 18px 16px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(226, 232, 240, 0.9);
+}
+
+.feature-card h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* FAQ */
+.faq-section {
+    max-width: 1120px;
+    margin: 60px auto 40px;
+}
+
+.faq-section h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+}
+
+.faq-list {
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.06),
+        0 0 0 1px rgba(226, 232, 240, 0.9);
+}
+
+.faq-item + .faq-item {
+    border-top: 1px solid #e5e7eb;
+}
+
+.faq-header {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+}
+
+.faq-icon {
+    font-weight: 600;
+    color: #9ca3af;
+}
+
+.faq-body {
+    padding: 0 16px 12px;
+    font-size: 14px;
+    color: #4b5563;
+    display: none;
+}
+
+.faq-item.open .faq-body {
+    display: block;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .header {
+        padding-inline: 16px;
+    }
+
+    .nav-buttons {
+        display: none;
+    }
+
+    .planner-shell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        margin-top: 28px;
+    }
+
+    .form-container {
+        margin-top: 0;
+        padding-inline: 18px;
+    }
+}
+</style>
+
+<script>
+
+/* ----------- NAVIGATION FUNCTIONS ----------- */
+
+function goToHome() {
+    window.location.href = "index.html";
+}
+
+function goToLogin() {
+    window.location.href = "/login.html?next=/trip";
+}
+
+/* ----------- DESTINATION SEARCH ----------- */
+
+const destinations = [
+    { name: "New South Wales, Australia", flag: "🇦🇺" },
+    { name: "New York, USA", flag: "🇺🇸" },
+    { name: "Paris, France", flag: "🇫🇷" },
+    { name: "London, UK", flag: "🇬🇧" },
+    { name: "Dubai, UAE", flag: "🇦🇪" },
+    { name: "New Delhi, India", flag: "🇮🇳" }
+];
+
+const input = document.getElementById("destinationInput");
+const suggestionsBox = document.getElementById("suggestions");
+
+input.addEventListener("input", function() {
+    const value = this.value.toLowerCase();
+    suggestionsBox.innerHTML = "";
+
+    if (!value) {
+        suggestionsBox.style.display = "none";
+        return;
+    }
+
+    const filtered = destinations.filter(dest =>
+        dest.name.toLowerCase().includes(value)
+    );
+
+    filtered.forEach(dest => {
+        const div = document.createElement("div");
+        div.classList.add("suggestion-item");
+        div.innerHTML = `<span>${dest.flag}</span> ${dest.name}`;
+        div.onclick = () => {
+            input.value = dest.name;
+            suggestionsBox.style.display = "none";
+        };
+        suggestionsBox.appendChild(div);
+    });
+
+    suggestionsBox.style.display = filtered.length ? "block" : "none";
+});
+
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".search-container")) {
+        suggestionsBox.style.display = "none";
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("travelDate").setAttribute("min", today);
+});
+
+function generateTrip() {
+
+    const destination = input.value;
+    const travelDate = document.getElementById("travelDate").value;
+    const days = document.getElementById("days").value;
+    const budget = document.getElementById("budget").value;
+    const interests = document.getElementById("interests").value;
+    const errorMsg = document.getElementById("error-msg");
+
+    errorMsg.textContent = "";
+
+    if (!destination) return errorMsg.textContent = "Please select a destination.";
+    if (!travelDate) return errorMsg.textContent = "Please select a travel date.";
+    if (days <= 0) return errorMsg.textContent = "Days must be greater than 0.";
+    if (budget < 0) return errorMsg.textContent = "Budget cannot be negative.";
+
+    // Redirect to generate.html
+    window.location.href =
+        `generate.html?destination=${encodeURIComponent(destination)}&date=${travelDate}&days=${days}&budget=${budget}&interests=${encodeURIComponent(interests)}`;
+}
+
+// Subtle entrance animation for form
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".form-container");
+    const shell = document.querySelector(".planner-shell");
+
+    if (shell) {
+        shell.style.opacity = "0";
+        shell.style.transform = "translateY(18px)";
+        requestAnimationFrame(() => {
+            shell.style.transition = "opacity 0.55s ease-out, transform 0.55s ease-out";
+            shell.style.opacity = "1";
+            shell.style.transform = "translateY(0)";
+        });
+    } else if (form) {
+        form.style.opacity = "0";
+        form.style.transform = "translateY(18px)";
+        requestAnimationFrame(() => {
+            form.style.transition = "opacity 0.55s ease-out, transform 0.55s ease-out";
+            form.style.opacity = "1";
+            form.style.transform = "translateY(0)";
+        });
+    }
+
+    // FAQ toggles
+    document.querySelectorAll(".faq-item").forEach(item => {
+        const header = item.querySelector(".faq-header");
+        header.addEventListener("click", () => {
+            const open = item.classList.contains("open");
+            document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+            if (!open) item.classList.add("open");
+        });
+    });
+});
+</script>
+
+</html>

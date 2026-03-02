@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karnataka Tourist Places</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #020617;
+    color: #e5e7eb;
+    transition: 0.4s;
+}
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #020617;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.7);
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+/* Hover Effect */
+.back-button:hover {
+    transform: translateX(-4px) translateY(-1px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.85);
+}
+
+/* Dark Mode Compatibility */
+.dark .back-button {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background: linear-gradient(120deg,#0f172a,#1e293b,#0f172a);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+}
+
+.search-box {
+    text-align: center;
+    margin: 20px;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 999px;
+    border: 1px solid #1f2937;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: #020617;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    color: #bae6fd;
+}
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+input {
+    padding: 10px;
+    width: 280px;
+    border-radius: 999px;
+    border: 1px solid #1f2937;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: #3b82f6;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    color: white;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+<a href="suggestion.html" class="back-button">← Back</a>
+<header>
+    <h1>Top 10 Tourist Places in Karnataka</h1>
+    <p>Explore the beauty of Karnataka</p>
+</header>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+</div>
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="container" id="placesContainer">
+
+<!-- 1 Mysore -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Mysore_Palace_Morning.jpg">
+<div class="card-content">
+<h2>Mysore</h2>
+<p>Mysore, officially known as Mysuru, is one of the most beautiful heritage cities in Karnataka. It is famous for the magnificent Mysore Palace, which attracts millions of visitors every year. The palace showcases Indo-Saracenic architecture with intricate carvings, colorful domes, and royal interiors. Mysore is also known for its grand Dasara festival, celebrated with great enthusiasm and cultural performances. Apart from the palace, visitors can explore Chamundi Hills, St. Philomena’s Church, and Brindavan Gardens. The city has a rich tradition of silk weaving and sandalwood products. Mysore offers a peaceful environment combined with royal history, making it a must-visit destination in Karnataka.</p>
+</div>
+</div>
+
+<!-- 2 Coorg -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Coorg_Mountains.jpg">
+<div class="card-content">
+<h2>Coorg</h2>
+<p>Coorg, also called Kodagu, is popularly known as the “Scotland of India” due to its misty hills and lush green landscapes. It is famous for coffee plantations, waterfalls, and scenic beauty. Abbey Falls and Iruppu Falls are major attractions here. Raja’s Seat offers a stunning sunset view over the valleys. Coorg is also home to Dubare Elephant Camp where visitors can interact with elephants. The cool climate throughout the year makes it perfect for nature lovers. Trekking enthusiasts enjoy trails in Tadiandamol Peak. The peaceful surroundings, aromatic coffee estates, and rich culture make Coorg an unforgettable travel experience.</p>
+</div>
+</div>
+
+<!-- 3 Hampi -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Hampi_Stone_Chariot.jpg">
+<div class="card-content">
+<h2>Hampi</h2>
+<p>Hampi is a UNESCO World Heritage Site and one of India’s most remarkable historical destinations. It was once the capital of the Vijayanagara Empire and is now known for its ancient ruins and temples. The Stone Chariot at Vittala Temple is an iconic symbol of Hampi. The town is surrounded by rocky hills and the Tungabhadra River, offering scenic landscapes. Visitors can explore Virupaksha Temple, Lotus Mahal, and Elephant Stables. Hampi’s architecture reflects rich craftsmanship and artistic excellence. It is a paradise for history lovers and photographers, providing a unique glimpse into Karnataka’s glorious past.</p>
+</div>
+</div>
+
+<!-- 4 Chikmagalur -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Mullayanagiri_Peak.jpg">
+<div class="card-content">
+<h2>Chikmagalur</h2>
+<p>Chikmagalur is a beautiful hill station famous for its coffee estates and mountain views. It is home to Mullayanagiri, the highest peak in Karnataka. The region offers breathtaking trekking trails and serene landscapes. Baba Budangiri Hills is another popular attraction known for its caves and religious significance. The pleasant climate and lush greenery make Chikmagalur perfect for relaxation. Coffee lovers can enjoy estate tours and learn about coffee production. The town provides a refreshing escape from city life and is ideal for nature and adventure enthusiasts.</p>
+</div>
+</div>
+
+<!-- 5 Gokarna -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Om_Beach_Gokarna.jpg">
+<div class="card-content">
+<h2>Gokarna</h2>
+<p>Gokarna is a small coastal town known for its serene beaches and spiritual atmosphere. It is famous for Om Beach, shaped like the symbol ‘Om’. The town is also home to the ancient Mahabaleshwar Temple dedicated to Lord Shiva. Gokarna offers a peaceful alternative to crowded beach destinations. Visitors can relax at Kudle Beach, Half Moon Beach, and Paradise Beach. The calm environment, golden sands, and clear waters attract travelers from across the world. Gokarna perfectly blends spirituality and natural beauty.</p>
+</div>
+</div>
+
+<!-- 6 Jog Falls -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Jog_Falls.jpg">
+<div class="card-content">
+<h2>Jog Falls</h2>
+<p>Jog Falls is one of the highest waterfalls in India and a spectacular natural wonder in Karnataka. Located in the Western Ghats, it is formed by the Sharavathi River. The waterfall drops from a height of around 830 feet in four distinct streams. The monsoon season enhances its beauty, creating a breathtaking view. Tourists can trek down to the base for a closer look. The surrounding greenery adds to its charm. Jog Falls is a must-visit for nature lovers and adventure seekers.</p>
+</div>
+</div>
+
+<!-- 7 Badami -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Badami_Cave_Temple.jpg">
+<div class="card-content">
+<h2>Badami</h2>
+<p>Badami is famous for its rock-cut cave temples dating back to the 6th century. These temples showcase impressive carvings and ancient architecture. The Agastya Lake adds scenic beauty to the town. Badami was once the capital of the Chalukya dynasty. Visitors can explore cave temples dedicated to Hindu and Jain deities. The red sandstone cliffs create a stunning backdrop. Badami is a historical treasure that reflects Karnataka’s rich heritage.</p>
+</div>
+</div>
+
+<!-- 8 Udupi -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Udupi_Sri_Krishna_Temple.jpg">
+<div class="card-content">
+<h2>Udupi</h2>
+<p>Udupi is known for its famous Sri Krishna Temple and delicious South Indian cuisine. It is a major pilgrimage center in Karnataka. Malpe Beach nearby attracts tourists with its clean shores. The town has a spiritual atmosphere combined with coastal charm. Udupi cuisine is popular across India. The peaceful surroundings and religious significance make it a special destination.</p>
+</div>
+</div>
+
+<!-- 9 Nandi Hills -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Nandi_Hills.jpg">
+<div class="card-content">
+<h2>Nandi Hills</h2>
+<p>Nandi Hills is a popular weekend getaway near Bengaluru. It is famous for its sunrise views and cool climate. The hilltop offers panoramic views of the surrounding valleys. It was once a summer retreat for Tipu Sultan. Visitors can explore Tipu’s Drop and ancient temples. The peaceful atmosphere and scenic beauty attract nature lovers and photographers.</p>
+</div>
+</div>
+
+<!-- 10 Belur -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Belur_Temple.jpg">
+<div class="card-content">
+<h2>Belur</h2>
+<p>Belur is renowned for the Chennakesava Temple built by the Hoysala dynasty. The temple is known for its intricate carvings and architectural brilliance. Every sculpture tells a story from mythology. The fine details reflect artistic excellence. Belur is a paradise for history and architecture lovers. It stands as a symbol of Karnataka’s rich cultural heritage.</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+    © 2026 Karnataka Tourism | Designed for Travel Lovers
+</footer>
+
+<script>
+    // Back button smooth click animation
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    this.style.transform = "scale(0.9)";
+});
+function searchPlaces() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName('h2')[0];
+        if (title.innerHTML.toLowerCase().indexOf(input) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+
+</script>
+
+</body>
+</html>

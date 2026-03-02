@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Tourist Places in Kerala</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #020617;
+    transition: 0.4s;
+}
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+/* Hover Effect */
+.back-button:hover {
+    background-color: #333;
+    transform: translateX(-5px);
+}
+
+/* Dark Mode Compatibility */
+.dark .back-button {
+    background-color: black;
+    color: white;
+}
+
+header {
+    background: linear-gradient(90deg,#11998e,#38ef7d);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 280px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    background: #11998e;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: #020617;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(34, 197, 94, 0.4);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    color: #11998e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #11998e;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Dark Mode */
+.dark {
+    background: #1c1c1c;
+    color: white;
+}
+
+.dark .card {
+    background: #2c2c2c;
+}
+
+.dark header {
+    background: linear-gradient(90deg,#000000,#434343);
+}
+
+.dark footer {
+    background: #000000;
+}
+</style>
+</head>
+
+<body>
+<a href="suggestion.html" class="back-button">← Back</a>
+<header>
+    <h1>Top 10 Tourist Places in Kerala</h1>
+    <p>God’s Own Country</p>
+</header>
+
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Search places..." onkeyup="searchPlaces()">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+
+<div class="container">
+
+<!-- 1 Munnar -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Munnar_Tea_Plantations.jpg">
+<div class="card-content">
+<h2>Munnar</h2>
+<p>Munnar is a breathtaking hill station located in the Western Ghats of Kerala. Famous for its vast tea plantations, mist-covered hills, and cool climate, it attracts thousands of tourists every year. The lush greenery and scenic landscapes create a peaceful environment perfect for relaxation. Visitors can explore Eravikulam National Park, home to the endangered Nilgiri Tahr. Mattupetty Dam and Echo Point are popular attractions offering beautiful views. The tea museums provide insight into the history of tea cultivation in the region. Munnar is also ideal for trekking and nature photography. The serene atmosphere and refreshing climate make it one of the most loved destinations in Kerala.</p>
+</div>
+</div>
+
+<!-- 2 Alleppey -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Alleppey_Houseboat.jpg">
+<div class="card-content">
+<h2>Alleppey</h2>
+<p>Alleppey, also known as Alappuzha, is famous for its enchanting backwaters and houseboat cruises. The calm waters surrounded by coconut trees create a picturesque setting. Tourists can enjoy traditional Kerala cuisine on houseboats while sailing through the backwaters. Alleppey Beach and the annual Nehru Trophy Boat Race are major attractions. The peaceful waterways offer a unique travel experience.</p>
+</div>
+</div>
+
+<!-- 3 Wayanad -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Wayanad_Hills.jpg">
+<div class="card-content">
+<h2>Wayanad</h2>
+<p>Wayanad is known for its wildlife, waterfalls, and lush forests. It is a perfect destination for adventure lovers. Edakkal Caves, Soochipara Falls, and Wayanad Wildlife Sanctuary attract many visitors. The region offers trekking trails and scenic viewpoints. The natural beauty and cool climate make it a refreshing getaway.</p>
+</div>
+</div>
+
+<!-- 4 Thekkady -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Periyar_Lake_Thekkady.jpg">
+<div class="card-content">
+<h2>Thekkady</h2>
+<p>Thekkady is home to Periyar Wildlife Sanctuary, one of India’s best wildlife reserves. Visitors can enjoy boat safaris in Periyar Lake to spot elephants and other animals. The spice plantations add aromatic charm to the region. It is an excellent place for eco-tourism and nature exploration.</p>
+</div>
+</div>
+
+<!-- 5 Kovalam -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Kovalam_Beach.jpg">
+<div class="card-content">
+<h2>Kovalam</h2>
+<p>Kovalam is a famous beach destination known for its crescent-shaped coastline. The lighthouse beach offers stunning sunset views. Visitors can enjoy swimming, surfing, and relaxing by the sea. Kovalam’s calm atmosphere attracts both domestic and international tourists.</p>
+</div>
+</div>
+
+<!-- 6 Kochi -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Fort_Kochi_Chinese_Fishing_Nets.jpg">
+<div class="card-content">
+<h2>Kochi</h2>
+<p>Kochi, also called Cochin, is a vibrant port city blending history and modernity. The Chinese fishing nets and Fort Kochi reflect colonial influence. The city has museums, churches, and cultural centers. Kochi is known for its diverse heritage and lively markets.</p>
+</div>
+</div>
+
+<!-- 7 Varkala -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Varkala_Beach.jpg">
+<div class="card-content">
+<h2>Varkala</h2>
+<p>Varkala Beach is famous for its dramatic cliffs and spiritual significance. The beach provides a serene atmosphere and panoramic views of the Arabian Sea. It is also home to the Janardanaswamy Temple. Varkala is perfect for relaxation and meditation.</p>
+</div>
+</div>
+
+<!-- 8 Athirappilly Falls -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Athirappilly_Falls.jpg">
+<div class="card-content">
+<h2>Athirappilly Falls</h2>
+<p>Athirappilly Falls is the largest waterfall in Kerala and is often called the “Niagara of India.” Surrounded by dense forests, it offers breathtaking views. The waterfall becomes more spectacular during monsoon season. It is a favorite spot for nature lovers and photographers.</p>
+</div>
+</div>
+
+<!-- 9 Kumarakom -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Kumarakom_Backwaters.jpg">
+<div class="card-content">
+<h2>Kumarakom</h2>
+<p>Kumarakom is a beautiful backwater destination near Vembanad Lake. It is known for bird sanctuaries and luxury houseboats. Visitors can enjoy peaceful boat rides and observe migratory birds. The calm waters and scenic beauty create a relaxing holiday experience.</p>
+</div>
+</div>
+
+<!-- 10 Bekal Fort -->
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Bekal_Fort.jpg">
+<div class="card-content">
+<h2>Bekal Fort</h2>
+<p>Bekal Fort is the largest fort in Kerala, offering stunning sea views. The historic fort was built in the 17th century and attracts history lovers. The well-maintained gardens and beach nearby enhance its beauty. It is a perfect spot for sightseeing and photography.</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Kerala Tourism | Explore Nature’s Paradise
+</footer>
+
+<script>
+    // Back button smooth click animation
+document.querySelector('.back-button').addEventListener('click', function(e) {
+    this.style.transform = "scale(0.9)";
+});
+function searchPlaces() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h2")[0];
+        if (title.innerHTML.toLowerCase().indexOf(input) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+window.addEventListener("scroll", function() {
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screenHeight = window.innerHeight;
+        if (position < screenHeight - 100) {
+            card.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
